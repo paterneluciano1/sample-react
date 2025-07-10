@@ -14,7 +14,7 @@ class ProductCard extends Component {
       transaction: {
         amount: product.price,
         description: product.description,
-        callback_url: "http://localhost:3000"
+        callback_url: "http://reactsample.fedapay.com"
       },
       currency: {
         iso: product.currency
@@ -26,11 +26,11 @@ class ProductCard extends Component {
       onComplete(resp) {
         const FedaPay = window['FedaPay'];
         if (resp.reason === FedaPay.DIALOG_DISMISSED) {
-          window.location.href = "http://localhost:3000";
+          window.location.href = "http://reactsample.fedapay.com";
           alert('Paiement annulé');
         } else {
           alert('Transaction terminée : ' + resp.reason);
-          window.location.href = "http://localhost:3000";
+          window.location.href = "http://reactsample.fedapay.com";
         }
         console.log(resp.transaction);
       }
@@ -87,7 +87,7 @@ export default class App extends Component {
                 <ProductCard key={product.id} product={product} publicKey={PUBLIC_KEY} />
               ))
             ) : (
-              <p>Chargement des produits...</p>
+              <p>Chargement des produits....</p>
             )}
           </div>  
         </div>
